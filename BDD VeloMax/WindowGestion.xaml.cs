@@ -473,5 +473,7 @@ namespace BDD_VeloMax
             blocFournisseur.Visibility = Visibility.Hidden;
             blocCommande.Visibility = Visibility.Hidden;
         }
+
+        //La gestion client individu et entreprise a été réalisé
     }
 }
