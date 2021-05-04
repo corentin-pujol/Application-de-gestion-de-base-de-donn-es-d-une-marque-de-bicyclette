@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="ConfirmerEntree" Content="Confirmer" HorizontalAlignment="Left" Margin="340,187,0,0" VerticalAlignment="Top" Width="169" Click="ConfirmeEntree"/>
+        <Label x:Name="blocId" Content="Veuillez saisir votre adresse mail :" HorizontalAlignment="Left" Margin="42,70,0,0" VerticalAlignment="Top" Width="185"/>
+        <TextBox x:Name="blocIdtxt" HorizontalAlignment="Left" Height="23" Margin="232,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="508" RenderTransformOrigin="-0.205,0.722"/>
+        <Label x:Name="blocPasseword" Content="Veuillez saisir votre mot de passe :" HorizontalAlignment="Left" Margin="42,116,0,0" VerticalAlignment="Top" Width="203"/>
+        <TextBox x:Name="blocPassewordtxt" HorizontalAlignment="Left" Height="23" Margin="245,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="495" RenderTransformOrigin="-0.205,0.722"/>
+        <Button x:Name="ConfirmerEntree" Content="Confirmer" HorizontalAlignment="Left" Margin="306,188,0,0" VerticalAlignment="Top" Width="169" Click="ConfirmeEntree"/>
+        <Button x:Name="ButtonOublie" Content="Réinitialiser mot de passe" HorizontalAlignment="Left" Margin="55,354,0,0" VerticalAlignment="Top" Width="172" Click="NewPasseword"/>
+        <Button x:Name="ButtonCreation" Content="Création identifiant" HorizontalAlignment="Left" Margin="571,354,0,0" VerticalAlignment="Top" Width="169" Click="PageCreationID"/>
     </Grid>
 </Window>

@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Web;
+using System.Net.Mail;
 
 namespace BDD_VeloMax
 {
