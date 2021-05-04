@@ -10,6 +10,8 @@
         <Grid Margin="0,0,629.6,0">
             <Button x:Name="buttonFournisseurs" Content="Gestion des fournisseurs" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Click="clickFournisseurs"/>
             <Button x:Name="buttonCommande" Content="Gestion des commandes" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top" Click="ClickCommande"/>
+            <Button x:Name="buttonIndividu" Content="Gestion des particuliers" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Click="ClickIndividu" Width="133"/>
+            <Button x:Name="buttonEntreprise" Content="Gestion des entreprises" HorizontalAlignment="Left" Margin="10,203,0,0" VerticalAlignment="Top" Click="ClickEntreprise" Width="133"/>
         </Grid>
         <DataGrid Margin="164,0,0,144" Name ="tab"></DataGrid>
         <Button x:Name="buttonAjouter" Content="Ajouter" HorizontalAlignment="Left" Margin="219,281,0,0" VerticalAlignment="Top" Width="135" Height="38" Click="ClickAjouter"/>
@@ -24,5 +26,7 @@
         <Button x:Name="buttonOKajout" Content="OK" HorizontalAlignment="Left" Margin="745,355,0,0" VerticalAlignment="Top" Width="42" Height="23" RenderTransformOrigin="1.281,0.131" Click="AjouterBlockSelect"/>
         <Button x:Name="buttonOKModif" Content="OK" HorizontalAlignment="Left" Margin="745,355,0,0" VerticalAlignment="Top" Width="42" Height="23" RenderTransformOrigin="1.281,0.131" Click="ModifierBlockSelect"/>
         <Label x:Name="blocCommande" Content="n°_commande;date_commande;adresse_livraison;date_livraison;nom_indiv;nom_boutique" HorizontalAlignment="Left" Margin="164,324,-4,0" VerticalAlignment="Top" Width="630"/>
+        <Label x:Name="blocIndividu" Content="nom_indiv;prenom_indiv;adresse_indiv;telephone_indiv;courriel_indiv;n°_programme_indiv" HorizontalAlignment="Left" Margin="164,324,-4,0" VerticalAlignment="Top" Width="630"/>
+        <Label x:Name="blocEntreprise" Content="nom_boutique;adresse_boutique;telephone_boutique;courriel_boutique;nom_contact_boutique;volume_achat" HorizontalAlignment="Left" Margin="164,324,-4,0" VerticalAlignment="Top" Width="630"/>
     </Grid>
 </Window>

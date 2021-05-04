@@ -135,6 +135,20 @@ namespace BDD_VeloMax
 
 
 
+            if (instance == "individu")
+            {
+                requete += "nom_indiv =" + selection;
+            }
+
+
+
+            if (instance == "boutique")
+            {
+                requete += "nom_boutique =" + selection;
+            }
+
+
+
             MessageBox.Show("Suppression réussie");
             ExecuterRequete(requete);
 
@@ -168,6 +182,42 @@ namespace BDD_VeloMax
             if (instance == "commande")
             {
                 blocCommande.Visibility = Visibility.Visible;
+                DataRowView row = tab.SelectedItem as DataRowView;
+
+
+
+                sauvegarde = new string[6];
+                sauvegarde[0] = row.Row.ItemArray[0].ToString();
+                sauvegarde[1] = row.Row.ItemArray[1].ToString();
+                sauvegarde[2] = row.Row.ItemArray[2].ToString();
+                sauvegarde[3] = row.Row.ItemArray[3].ToString();
+                sauvegarde[4] = row.Row.ItemArray[4].ToString();
+                sauvegarde[5] = row.Row.ItemArray[5].ToString();
+            }
+
+
+
+            if (instance == "individu")
+            {
+                blocIndividu.Visibility = Visibility.Visible;
+                DataRowView row = tab.SelectedItem as DataRowView;
+
+
+
+                sauvegarde = new string[6];
+                sauvegarde[0] = row.Row.ItemArray[0].ToString();
+                sauvegarde[1] = row.Row.ItemArray[1].ToString();
+                sauvegarde[2] = row.Row.ItemArray[2].ToString();
+                sauvegarde[3] = row.Row.ItemArray[3].ToString();
+                sauvegarde[4] = row.Row.ItemArray[4].ToString();
+                sauvegarde[5] = row.Row.ItemArray[5].ToString();
+            }
+
+
+
+            if (instance == "boutique")
+            {
+                blocEntreprise.Visibility = Visibility.Visible;
                 DataRowView row = tab.SelectedItem as DataRowView;
 
 
@@ -239,7 +289,7 @@ namespace BDD_VeloMax
                 if (sauvegarde[4] != items[4])
                 {
                     if (changementAvant == true) requete += ", ";
-                    requete += "libelle_fournisseur = " + g + items[4] + g;
+                    requete += "libelle_fournisseur = " + items[4];
                     changementAvant = true;
                 }
 
@@ -341,6 +391,116 @@ namespace BDD_VeloMax
 
 
 
+            if (instance == "individu")
+            {
+                if (sauvegarde[1] != items[1])
+                {
+                    if (changementAvant == true) requete += ", ";
+                    requete += "prenom_indiv = " + g + items[1] + g;
+                    changementAvant = true;
+                }
+                if (sauvegarde[2] != items[2])
+                {
+                    if (changementAvant == true) requete += ", ";
+                    requete += "adresse_indiv = " + g + items[2] + g;
+                    changementAvant = true;
+                }
+                if (sauvegarde[3] != items[3])
+                {
+                    if (changementAvant == true) requete += ", ";
+                    requete += "telephone_indiv = " + g + items[3] + g;
+                    changementAvant = true; 
+                }
+                if (sauvegarde[4] != items[4])
+                {
+                    if (changementAvant == true) requete += ", ";
+                    requete += "courriel_indiv = " + g + items[4] + g;
+                    changementAvant = true; 
+                }
+                if (sauvegarde[5] != items[5])
+                {
+                    //Clé étrangère = nom_indiv donc on teste si le nom que l'on souhaite mdofier existe
+                    maConnexion.Open();
+                    MySqlCommand command1 = new MySqlCommand("Select * from programme where n°_programme=" +  items[5] + ";", maConnexion);
+                    if (command1.ExecuteReader().HasRows == true || items[5] == "NULL")
+                    {
+                        if (changementAvant == true) requete += ", ";
+                        requete += "n°_programme = " + items[5];
+                        changementAvant = true;
+                    }
+
+
+
+                    else
+                    {
+                        requetePossible = false;
+                        MessageBox.Show("Impossible : Ce n° de programme n'est pas enregistré dans notre base de donnée. Il doit être compris entre 1 et 4.");
+                    }
+                    maConnexion.Close();
+                }
+
+
+                requete += " WHERE nom_indiv =" + g + sauvegarde[0] + g;
+
+                
+                if (sauvegarde[0] != items[0])
+                {
+                    MessageBox.Show("Impossible : on ne peut modifier la clé primaire nom_indiv.");
+                    requetePossible = false;
+                }
+
+            }
+
+
+
+            if (instance == "boutique")
+            {
+                if (sauvegarde[1] != items[1])
+                {
+                    if (changementAvant == true) requete += ", ";
+                    requete += "adresse_boutique = " + g + items[1] + g;
+                    changementAvant = true;
+                }
+                if (sauvegarde[2] != items[2])
+                {
+                    if (changementAvant == true) requete += ", ";
+                    requete += "telephone_boutique = " + g + items[2] + g;
+                    changementAvant = true;
+                }
+                if (sauvegarde[3] != items[3])
+                {
+                    if (changementAvant == true) requete += ", ";
+                    requete += "courriel_boutique = " + g + items[3] + g;
+                    changementAvant = true;
+                }
+                if (sauvegarde[4] != items[4])
+                {
+                    if (changementAvant == true) requete += ", ";
+                    requete += "nom_contact_boutique = " + g + items[4] + g;
+                    changementAvant = true;
+                }
+                if (sauvegarde[5] != items[5])
+                {
+                    if (changementAvant == true) requete += ", ";
+                    requete += "volume_achat = " + items[5];
+                    changementAvant = true;
+                }
+
+
+
+                requete += " WHERE nom_boutique =" + g + sauvegarde[0] + g;
+
+
+
+                if (sauvegarde[0] != items[0])
+                {
+                    MessageBox.Show("Impossible : on ne peut modifier la clé primaire nom_boutique.");
+                    requetePossible = false;
+                }
+            }
+
+
+
             if (requetePossible == true)
             {
                 MessageBox.Show("Modification du membre réussie.");
@@ -373,6 +533,20 @@ namespace BDD_VeloMax
             if (instance == "commande")
             {
                 blocCommande.Visibility = Visibility.Visible;
+            }
+
+
+
+            if (instance == "individu")
+            {
+                blocIndividu.Visibility = Visibility.Visible;
+            }
+
+
+
+            if (instance == "boutique")
+            {
+                blocEntreprise.Visibility = Visibility.Visible;
             }
 
 
@@ -436,6 +610,34 @@ namespace BDD_VeloMax
 
 
 
+            if (instance == "individu")
+            {
+                requete += g + items[0] + g + ',' + g + items[1] + g + ',' + g + items[2] + g + ',' + g + items[3] + g + ',' + g + items[4] + g;
+                if (items[5] == "NULL") requete += ",NULL);";
+                if (items[5] != "NULL")
+                {
+                    //Clé étrangère =
+                    maConnexion.Open();
+                    MySqlCommand commande = new MySqlCommand("Select * from programme where n°_programme=" + items[5] + ";", maConnexion);
+                    if (commande.ExecuteReader().HasRows == true) requete += "," + items[5] + " );";
+                    else
+                    {
+                        MessageBox.Show("Impossible : Ce n° de programme n'est pas enregistré dans notre base de donnée. Il doit être entre 1 et 4.");
+                        requetepossible = false;
+                    }
+                    maConnexion.Close();
+                }
+            }
+
+
+
+            if (instance == "boutique")
+            {
+                requete += g + items[0] + g  + ',' + g + items[1] + g + ',' + g + items[2] + g + ',' + g + items[3] + g + ',' + g + items[4] + g + ',' + items[5] + ");";
+            }
+
+
+
             if (requetepossible == true)
             {
                 MessageBox.Show("Ajout réussi du membre.");
@@ -462,6 +664,20 @@ namespace BDD_VeloMax
             instance = "commande";
             BindDataGrid();
         }
+
+
+
+        private void ClickIndividu(object sender, RoutedEventArgs e)
+        {
+            instance = "individu";
+            BindDataGrid();
+        }
+
+        private void ClickEntreprise(object sender, RoutedEventArgs e)
+        {
+            instance = "boutique";
+            BindDataGrid();
+        }
         #endregion
 
         public void VisibiliteHidden()
@@ -472,8 +688,9 @@ namespace BDD_VeloMax
 
             blocFournisseur.Visibility = Visibility.Hidden;
             blocCommande.Visibility = Visibility.Hidden;
+            blocIndividu.Visibility = Visibility.Hidden;
+            blocEntreprise.Visibility = Visibility.Hidden;
         }
 
-        //La gestion client individu et entreprise a été réalisé
     }
 }
