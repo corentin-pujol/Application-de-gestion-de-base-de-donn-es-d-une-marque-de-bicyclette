@@ -13,8 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using System.Data;
-using System.Web;
-using System.Net.Mail;
 
 namespace BDD_VeloMax
 {
@@ -694,5 +692,16 @@ namespace BDD_VeloMax
             blocEntreprise.Visibility = Visibility.Hidden;
         }
 
+        private void ClickStatistiques(object sender, RoutedEventArgs e)
+        {
+            Statistiques statistiques = new Statistiques();
+            statistiques.Show();
+        }
+
+        private void ClickAssemblage(object sender, RoutedEventArgs e)
+        {
+            Assemblage assemblage = new Assemblage();
+            assemblage.Show();
+        }
     }
 }
